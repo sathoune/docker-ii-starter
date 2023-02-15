@@ -11,6 +11,6 @@
 - [x] Deploy from Makefile
 - [x] Expose services to the `outside` world
 ## Extra
-- [ ] Use reverse proxy
-- [ ] Add paths to services with traefik (Tip: `- traefik.http.routers.deployment.rule=Host
+- [x] Use reverse proxy
+- [x] Add paths to services with traefik (Tip: `- traefik.http.routers.deployment.rule=Host
   (`application.address`)`)

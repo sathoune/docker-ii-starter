@@ -31,10 +31,6 @@ services:
       - --insecure-registry=${DOCKER_REGISTRY_URL}
 
   deployment:
-    ports:
-      - "3000:3000"
-      - "8000:8000"
-      - "8008:8008"
     profiles:
       - deployment
       - all
@@ -53,6 +49,10 @@ services:
       - --insecure-registry=${DOCKER_REGISTRY_URL}
     labels:
       - "traefik.http.routers.deployment.entrypoints=web"
+      - traefik.http.routers.deployment.rule=
+        Host(`app.localhost`) ||
+        Host(`read.localhost`) ||
+        Host(`write.localhost`)
 
   reverse-proxy:
     profiles:
