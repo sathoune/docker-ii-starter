@@ -31,6 +31,10 @@ services:
       - --insecure-registry=${DOCKER_REGISTRY_URL}
 
   deployment:
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+      - "8008:8008"
     profiles:
       - deployment
       - all

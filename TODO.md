@@ -9,7 +9,7 @@
 - [x] Start services
 - [x] Pass relevant variables
 - [x] Deploy from Makefile
-- [ ] Expose services to the `outside` world
+- [x] Expose services to the `outside` world
 ## To consider
 - [ ] Multiple `compose.yml` files
 - [ ] Storing reused variables in `secret-service`
