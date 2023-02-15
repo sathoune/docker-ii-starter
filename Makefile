@@ -14,3 +14,6 @@ d:
 
 ub: d
 	docker compose up -d --build
+
+pipeline:
+	docker compose exec pipeline-runner sh ./ci-scripts/push-images.sh

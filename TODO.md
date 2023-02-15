@@ -3,8 +3,8 @@
 - [x] Redis persistence
 ## Pipelines
 - [x] Push images to Docker Registry
-- [ ] Enable Registry persistence
-- [ ] Automate with a script in Makefile
+- [x] Enable Registry persistence
+- [x] Automate with a script in Makefile
 ## Deployment
 - [ ] Start services
 - [ ] Pass relevant variables
