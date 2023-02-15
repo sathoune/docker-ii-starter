@@ -1,5 +1,5 @@
 ## Dev environment
-- [ ] Communication between services
+- [x] Communication between services
 - [ ] Redis persistence
 ## Pipelines
 - [ ] Push images to Docker Registry

@@ -1,7 +1,7 @@
 .PHONY: u d ub dev dev-down
 default: u
 
-dev:
+dev: dev-down
 	cd dev && docker compose up -d && cd ..
 dev-down:
 	cd dev && docker compose down --remove-orphans && cd ..

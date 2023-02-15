@@ -5,7 +5,6 @@ services:
       - /app/node_modules
 
   read-backend:
-
     volumes:
       - ./python-read:/app
 
