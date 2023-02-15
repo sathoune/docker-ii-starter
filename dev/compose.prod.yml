@@ -10,13 +10,18 @@ services:
     depends_on:
       - read-backend
       - write-backend
-
+    labels:
+      - traefik.http.routers.app.entrypoints=web
+      - traefik.http.routers.app.rule=Host(`app.localhost`)
   read-backend:
     image: registry:5000/read-backend
     env_file:
       - ./python-read/.env
     ports:
       - "8000:8000"
+    labels:
+      - traefik.http.routers.read.entrypoints=web
+      - traefik.http.routers.read.rule=Host(`read.localhost`)
 
   write-backend:
     image: registry:5000/write-backend
@@ -24,6 +29,9 @@ services:
       - ./python-write/.env
     ports:
       - "8008:8000"
+    labels:
+      - traefik.http.routers.write.entrypoints=web
+      - traefik.http.routers.write.rule=Host(`write.localhost`)
 
   redis:
     image: redis:latest
@@ -34,6 +42,22 @@ services:
       retries: 3
     volumes:
       - postgres-data:/data
+
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    restart: always
+    image: traefik:v2.8
+    # Enables the web UI and tells Traefik to listen to docker
+    command:
+      - --log.level=DEBUG
+      - --providers.docker
+      - --entrypoints.web.address=:80
+    ports:
+      # The HTTP port
+      - "80:80"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   postgres-data:
