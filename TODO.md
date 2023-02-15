@@ -8,7 +8,7 @@
 ## Deployment
 - [x] Start services
 - [x] Pass relevant variables
-- [ ] Deploy from Makefile
+- [x] Deploy from Makefile
 - [ ] Expose services to the `outside` world
 ## To consider
 - [ ] Multiple `compose.yml` files

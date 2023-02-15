@@ -1,4 +1,4 @@
-.PHONY: u d ub dev dev-down
+.PHONY: u d ub dev dev-down pipeline deploy
 default: u
 
 dev: dev-down
@@ -17,3 +17,6 @@ ub: d
 
 pipeline:
 	docker compose exec pipeline-runner sh ./ci-scripts/push-images.sh
+
+deploy:
+	docker compose exec deployment sh ./ci-scripts/deploy.sh
