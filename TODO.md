@@ -10,18 +10,7 @@
 - [x] Pass relevant variables
 - [x] Deploy from Makefile
 - [x] Expose services to the `outside` world
-## To consider
-- [ ] Multiple `compose.yml` files
-- [ ] Storing reused variables in `secret-service`
 ## Extra
 - [ ] Use reverse proxy
 - [ ] Add paths to services with traefik (Tip: `- traefik.http.routers.deployment.rule=Host
   (`application.address`)`)
-
-### Consultation
-- [ ] call to a friend 
-- [ ] call to a friend 
-- [ ] call to a friend
-
-- [ ] chat GPT
-- [ ] chat GPT
