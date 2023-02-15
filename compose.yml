@@ -20,6 +20,7 @@ services:
     environment:
       DOCKER_TLS_CERTDIR: /certs
     volumes:
+      - ./dev:/app
       - docker-certs-ca:/certs/ca
       - docker-certs-client:/certs/client
       - pipeline-settings:/var/lib/docker/
