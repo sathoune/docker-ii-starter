@@ -2,7 +2,7 @@
 - [x] Communication between services
 - [x] Redis persistence
 ## Pipelines
-- [ ] Push images to Docker Registry
+- [x] Push images to Docker Registry
 - [ ] Enable Registry persistence
 - [ ] Automate with a script in Makefile
 ## Deployment
