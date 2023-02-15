@@ -1,6 +1,6 @@
 ## Dev environment
 - [x] Communication between services
-- [ ] Redis persistence
+- [x] Redis persistence
 ## Pipelines
 - [ ] Push images to Docker Registry
 - [ ] Enable Registry persistence
