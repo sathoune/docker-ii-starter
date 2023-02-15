@@ -1,0 +1,66 @@
+volumes:
+  docker-certs-ca:
+  docker-certs-client:
+  pipeline-settings:
+
+services:
+  registry:
+    profiles:
+      - registry
+      - all
+    image: registry:2
+    ports:
+      - "5050:5000"
+
+  pipeline-runner:
+    privileged: true
+    build:
+      context: .
+      dockerfile: pipeline-runner/Dockerfile
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    volumes:
+      - docker-certs-ca:/certs/ca
+      - docker-certs-client:/certs/client
+      - pipeline-settings:/var/lib/docker/
+    command:
+      - --insecure-registry=${DOCKER_REGISTRY_URL}
+
+  deployment:
+    profiles:
+      - deployment
+      - all
+    privileged: true
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    volumes:
+      - docker-certs-ca:/certs/ca
+      - docker-certs-client:/certs/client
+    expose:
+      - 80
+    command:
+      - --insecure-registry=${DOCKER_REGISTRY_URL}
+    labels:
+      - "traefik.http.routers.deployment.entrypoints=web"
+
+  reverse-proxy:
+    profiles:
+      - rp
+      - all
+    # The official v2 Traefik docker image
+    restart: always
+    image: traefik:v2.8
+    # Enables the web UI and tells Traefik to listen to docker
+    command:
+      - --log.level=DEBUG
+      - --providers.docker
+      - --entrypoints.web.address=:80
+    ports:
+      # The HTTP port
+      - "80:80"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock

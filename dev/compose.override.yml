@@ -1,0 +1,14 @@
+services:
+  frontend:
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  read-backend:
+
+    volumes:
+      - ./python-read:/app
+
+  write-backend:
+    volumes:
+      - ./python-write:/app

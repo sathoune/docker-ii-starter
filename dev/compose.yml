@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build:
+      context: frontend
+      target: dev
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:5173"
+    depends_on:
+      - read-backend
+      - write-backend
+
+  read-backend:
+    build:
+      context: python-read
+    env_file:
+      - ./python-read/.env
+    ports:
+      - "8000:8000"
+
+  write-backend:
+    build:
+      context: python-write
+    env_file:
+      - ./python-write/.env
+    ports:
+      - "8008:8000"
+
+  redis:
+    image: redis:latest
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 3s
+      timeout: 1s
+      retries: 3
