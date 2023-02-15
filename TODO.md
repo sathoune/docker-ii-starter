@@ -6,8 +6,8 @@
 - [x] Enable Registry persistence
 - [x] Automate with a script in Makefile
 ## Deployment
-- [ ] Start services
-- [ ] Pass relevant variables
+- [x] Start services
+- [x] Pass relevant variables
 - [ ] Deploy from Makefile
 - [ ] Expose services to the `outside` world
 ## To consider
